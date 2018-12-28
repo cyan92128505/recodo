@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import './model/recode.dart';
 
 void main() => runApp(MyApp());
 
@@ -54,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
+      Map recodeMap = jsonDecode("{\"name\":\"hello\",\"value\":\"world\"}");
+      var recode = new Recode.fromJson(recodeMap);
+
+      print('Howdy, ${recode.name}!');
+      print('We sent the verification link to ${recode.value}.');
     });
   }
 
