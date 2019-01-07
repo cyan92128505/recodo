@@ -92,26 +92,26 @@ class _ListViewRecordState extends State<ListViewRecord> {
     );
   }
 
-  void _deleteRecord(BuildContext context, Record note, int position) async {
-    db.deleteRecord(note.id).then((notes) {
+  void _deleteRecord(BuildContext context, Record record, int position) async {
+    db.deleteRecord(record.id).then((records) {
       setState(() {
         items.removeAt(position);
       });
     });
   }
 
-  void _navigateToRecord(BuildContext context, Record note) async {
+  void _navigateToRecord(BuildContext context, Record record) async {
     String result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => RecordScreen(note)),
+      MaterialPageRoute(builder: (context) => RecordScreen(record)),
     );
 
     if (result == 'update') {
       db.getAllRecords().then((records) {
         setState(() {
           items.clear();
-          records.forEach((record) {
-            items.add(Record.fromMap(record));
+          records.forEach((_record) {
+            items.add(Record.fromMap(_record));
           });
         });
       });
