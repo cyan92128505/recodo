@@ -16,10 +16,10 @@ class _ListViewRecordState extends State<ListViewRecord> {
   void initState() {
     super.initState();
 
-    db.getAllRecords().then((notes) {
+    db.getAllRecords().then((records) {
       setState(() {
-        notes.forEach((note) {
-          items.add(Record.fromMap(note));
+        records.forEach((record) {
+          items.add(Record.fromMap(record));
         });
       });
     });
@@ -107,11 +107,11 @@ class _ListViewRecordState extends State<ListViewRecord> {
     );
 
     if (result == 'update') {
-      db.getAllRecords().then((notes) {
+      db.getAllRecords().then((records) {
         setState(() {
           items.clear();
-          notes.forEach((note) {
-            items.add(Record.fromMap(note));
+          records.forEach((record) {
+            items.add(Record.fromMap(record));
           });
         });
       });
@@ -125,11 +125,11 @@ class _ListViewRecordState extends State<ListViewRecord> {
     );
 
     if (result == 'save') {
-      db.getAllRecords().then((notes) {
+      db.getAllRecords().then((records) {
         setState(() {
           items.clear();
-          notes.forEach((note) {
-            items.add(Record.fromMap(note));
+          records.forEach((record) {
+            items.add(Record.fromMap(record));
           });
         });
       });

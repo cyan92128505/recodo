@@ -29,7 +29,7 @@ class DatabaseHelper {
 
   initDb() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'notes.db');
+    String path = join(databasesPath, 'records.db');
 
 //    await deleteDatabase(path); // just for testing
 
@@ -42,9 +42,9 @@ class DatabaseHelper {
         'CREATE TABLE $tableRecord($columnId INTEGER PRIMARY KEY, $columnTitle TEXT, $columnDescription TEXT)');
   }
 
-  Future<int> saveRecord(Record note) async {
+  Future<int> saveRecord(Record record) async {
     var dbClient = await db;
-    var result = await dbClient.insert(tableRecord, note.toMap());
+    var result = await dbClient.insert(tableRecord, record.toMap());
 //    var result = await dbClient.rawInsert(
 //        'INSERT INTO $tableRecord ($columnTitle, $columnDescription) VALUES (\'${note.title}\', \'${note.description}\')');
 

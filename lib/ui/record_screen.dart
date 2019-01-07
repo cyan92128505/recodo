@@ -3,8 +3,8 @@ import 'package:recodo/model/record.dart';
 import 'package:recodo/util/database_helper.dart';
 
 class RecordScreen extends StatefulWidget {
-  final Record note;
-  RecordScreen(this.note);
+  final Record record;
+  RecordScreen(this.record);
 
   @override
   State<StatefulWidget> createState() => new _RecordScreenState();
@@ -20,9 +20,9 @@ class _RecordScreenState extends State<RecordScreen> {
   void initState() {
     super.initState();
 
-    _titleController = new TextEditingController(text: widget.note.title);
+    _titleController = new TextEditingController(text: widget.record.title);
     _descriptionController =
-        new TextEditingController(text: widget.note.description);
+        new TextEditingController(text: widget.record.description);
   }
 
   @override
@@ -45,12 +45,12 @@ class _RecordScreenState extends State<RecordScreen> {
             ),
             Padding(padding: new EdgeInsets.all(5.0)),
             RaisedButton(
-              child: (widget.note.id != null) ? Text('Update') : Text('Add'),
+              child: (widget.record.id != null) ? Text('Update') : Text('Add'),
               onPressed: () {
-                if (widget.note.id != null) {
+                if (widget.record.id != null) {
                   db
                       .updateRecord(Record.fromMap({
-                    'id': widget.note.id,
+                    'id': widget.record.id,
                     'title': _titleController.text,
                     'description': _descriptionController.text
                   }))
